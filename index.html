@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Gavigniaux | Data Engineer & Avionic Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        /* Défilement doux natif */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f172a; 
+            color: #f8fafc; 
+            antialiased: true;
+        }
+
+        .glass { 
+            background: rgba(30, 41, 59, 0.7); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .gradient-text { 
+            background: linear-gradient(90deg, #38bdf8, #818cf8); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        .cert-card { 
+            border-left: 4px solid #3b82f6; 
+            transition: transform 0.2s; 
+        }
+
+        .cert-card:hover { 
+            transform: translateY(-5px); 
+        }
+
+        .lang-btn.active { 
+            border-color: #3b82f6; 
+            color: #3b82f6; 
+        }
+
+        .clickable-card { 
+            transition: all 0.3s ease; 
+            cursor: pointer; 
+        }
+
+        .clickable-card:hover { 
+            background: rgba(56, 189, 248, 0.1); 
+            border-color: rgba(56, 189, 248, 0.4); 
+            transform: scale(1.02); 
+        }
+
+        /* Ajustement pour que l'ancre ne soit pas cachée par la navbar fixe */
+        section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <span class="text-xl font-bold gradient-text">WG.</span>
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#hero" class="nav-link hover:text-blue-400 transition" data-i18n="nav-home">Home</a>
+                    <a href="#experience" class="nav-link hover:text-blue-400 transition" data-i18n="nav-exp">Experience</a>
+                    <a href="#education" class="nav-link hover:text-blue-400 transition" data-i18n="nav-edu">Education</a>
+                </div>
+                <!-- Language Switcher -->
+                <div class="flex border border-slate-700 rounded-lg overflow-hidden text-xs">
+                    <button onclick="setLanguage('fr')" id="lang-fr" class="lang-btn px-3 py-1 bg-slate-800 hover:bg-slate-700 transition">FR</button>
+                    <button onclick="setLanguage('en')" id="lang-en" class="lang-btn px-3 py-1 bg-slate-800 hover:bg-slate-700 transition active">EN</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">William Gavigniaux</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-blue-400 mb-8 tracking-tight" data-i18n="hero-subtitle">Data Engineer & Certified Power BI Analyst</h2>
+            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed" data-i18n="hero-desc">
+                Aeronautical Expert (Airbus Programs) combining 8+ years of industry experience with expertise in Data Engineering and Critical Embedded Systems (DO-178).
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://www.linkedin.com/in/w-gavigniaux/" target="_blank" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20">
+                    <i class="fab fa-linkedin text-xl"></i> LinkedIn
+                </a>
+                <a href="https://github.com/Wil31" target="_blank" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-full font-bold transition border border-slate-700 flex items-center justify-center gap-2">
+                    <i class="fab fa-github text-xl"></i> GitHub
+                </a>
+                <a href="#experience" class="nav-link w-full sm:w-auto bg-transparent hover:bg-slate-800 text-slate-300 px-8 py-4 rounded-full font-bold transition flex items-center justify-center underline decoration-blue-500/50 underline-offset-4" data-i18n="hero-btn-exp">
+                    View my journey
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section class="py-12 px-6 bg-slate-900/50">
+        <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <a href="#cert-highlight" class="nav-link p-4 glass rounded-xl flex flex-col items-center justify-center clickable-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="w-6 mb-3">
+                <p class="font-bold">Power BI Associate</p>
+                <p class="text-xs text-slate-500" data-i18n="skill-1">Microsoft Certified</p>
+            </a>
+            <div class="p-4 glass rounded-xl flex flex-col items-center justify-center">
+                <i class="fab fa-python text-blue-400 text-2xl mb-2"></i>
+                <p class="font-bold">Python & SQL</p>
+                <p class="text-xs text-slate-500" data-i18n="skill-2">ETL & Pipelines</p>
+            </div>
+            <div class="p-4 glass rounded-xl flex flex-col items-center justify-center">
+                <i class="fas fa-plane text-blue-400 text-2xl mb-2"></i>
+                <p class="font-bold" data-i18n="skill-3-title">Avionics</p>
+                <p class="text-xs text-slate-500">DO-178 / FWS</p>
+            </div>
+            <div class="p-4 glass rounded-xl flex flex-col items-center justify-center">
+                <i class="fas fa-cogs text-blue-400 text-2xl mb-2"></i>
+                <p class="font-bold">Config Mgmt</p>
+                <p class="text-xs text-slate-500">Airbus A350XWB</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
+
+        <!-- Experience -->
+        <section id="experience">
+            <h3 class="text-3xl font-bold mb-10 flex items-center gap-3">
+                <span class="w-8 h-1 bg-blue-500 rounded"></span> <span data-i18n="section-exp">Professional Experience</span>
+            </h3>
+            
+            <div class="space-y-12 border-l-2 border-slate-800 ml-4 pl-8">
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900"></div>
+                    <h4 class="text-xl font-bold" data-i18n="exp1-title">Data Engineer & Software Expert</h4>
+                    <p class="text-blue-400 font-medium mb-2" data-i18n="exp1-subtitle">Sopra Steria (Client: Thales AVS) | 2022 - Present</p>
+                    <ul class="text-slate-400 space-y-2 list-disc list-inside text-sm md:text-base" data-i18n="exp1-list">
+                        <li>Designed and implemented ETL pipelines for complex aeronautical datasets.</li>
+                        <li>Developed embedded software (FWS) in compliance with DO-178B standards.</li>
+                        <li>Automated IVV testing using Python and deep-dive analysis via iSystem probes.</li>
+                        <li>Created Power BI dashboards for strategic technical project tracking.</li>
+                    </ul>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-900"></div>
+                    <h4 class="text-xl font-bold" data-i18n="exp2-title">Service Bulletin Engineer - Technical Expert</h4>
+                    <p class="text-blue-400 font-medium mb-2" data-i18n="exp2-subtitle">Akka Technologies (Client: Airbus) | 2017 - 2020</p>
+                    <ul class="text-slate-400 space-y-2 list-disc list-inside text-sm md:text-base" data-i18n="exp2-list">
+                        <li>Technical Expert & "Authorized Controller" for Airbus Service Bulletins.</li>
+                        <li>End-to-end management of SB lifecycle ensuring airworthiness compliance.</li>
+                    </ul>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-slate-700 border-4 border-slate-900"></div>
+                    <h4 class="text-xl font-bold">Configuration Manager</h4>
+                    <p class="text-blue-400 font-medium mb-2" data-i18n="exp3-subtitle">Sogeclair Aerospace (Airbus A350XWB) | 2013 - 2017</p>
+                    <p class="text-slate-400 text-sm md:text-base" data-i18n="exp3-desc">Managed technical changes and industrial impacts for the A350XWB program.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications -->
+        <section id="education">
+            <h3 class="text-3xl font-bold mb-10 flex items-center gap-3">
+                <span class="w-8 h-1 bg-indigo-500 rounded"></span> <span data-i18n="section-edu">Education & Certifications</span>
+            </h3>
+
+            <div id="cert-highlight" class="mb-10 glass p-6 rounded-2xl cert-card bg-gradient-to-r from-blue-900/20 to-transparent scroll-mt-24">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="bg-white p-3 rounded-lg shadow-lg shadow-blue-500/20">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft" class="w-12">
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h4 class="text-xl font-bold text-white uppercase tracking-wider">Microsoft Certified: Power BI Data Analyst Associate</h4>
+                        <p class="text-blue-400 font-medium italic" data-i18n="cert-id">Credential ID: D82AC809B8E5C00D</p>
+                    </div>
+                    <a href="https://learn.microsoft.com/fr-fr/users/gavigniauxwilliam-2257/credentials/d82ac809b8e5c00d" target="_blank" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg font-semibold transition text-sm flex items-center gap-2">
+                        <i class="fas fa-external-link-alt"></i> <span data-i18n="cert-btn">Verify Credential</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass p-6 rounded-2xl">
+                    <span class="text-indigo-400 font-bold">2021 - 2022</span>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu1-title">Python Developer</h4>
+                    <p class="text-sm text-slate-400" data-i18n="edu1-sub">OpenClassrooms (EQF Level 6 / Bachelor equivalent)</p>
+                    <p class="text-xs text-slate-500 mt-2" data-i18n="edu1-desc">13 professional projects: Django, REST APIs, Docker, PostgreSQL.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <span class="text-indigo-400 font-bold">2020 - 2021</span>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu2-title">C/C++ Software Developer</h4>
+                    <p class="text-sm text-slate-400" data-i18n="edu2-sub">AJC Formation (Embedded Systems)</p>
+                    <p class="text-xs text-slate-500 mt-2" data-i18n="edu2-desc">Object-oriented programming, Linux, Raspberry Pi integration.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <span class="text-indigo-400 font-bold">2012 - 2013</span>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu3-title">Bachelor in Aircraft Maintenance</h4>
+                    <p class="text-sm text-slate-400" data-i18n="edu3-sub">University of Toulouse Jean Jaurès</p>
+                </div>
+                <div class="glass p-6 rounded-2xl">
+                    <span class="text-indigo-400 font-bold">2010 - 2012</span>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu4-title">Associate Degree in Industrial Engineering</h4>
+                    <p class="text-sm text-slate-400">University of Perpignan (UPVD)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-10 border-t border-slate-800 text-center text-slate-500 text-sm">
+        <div class="mb-4 flex justify-center gap-6">
+            <a href="https://www.linkedin.com/in/w-gavigniaux/" target="_blank" class="hover:text-blue-400 transition transform hover:scale-110"><i class="fab fa-linkedin text-2xl"></i></a>
+            <a href="https://github.com/Wil31" target="_blank" class="hover:text-white transition transform hover:scale-110"><i class="fab fa-github text-2xl"></i></a>
+        </div>
+        <p data-i18n="footer">© 2026 William Gavigniaux — Hosted on my old OnePlus 3 💙</p>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: {
+                "nav-home": "Accueil",
+                "nav-exp": "Expérience",
+                "nav-edu": "Formation",
+                "hero-subtitle": "Data Engineer & Analyste Power BI Certifié",
+                "hero-desc": "Expert aéronautique (Programmes Airbus) combinant 8+ ans d'expérience métier avec une expertise en Ingénierie des Données et Systèmes Embarqués Critiques (DO-178).",
+                "hero-btn-exp": "Voir mon parcours",
+                "skill-1": "Certifié Microsoft",
+                "skill-2": "ETL & Pipelines",
+                "skill-3-title": "Avionique",
+                "section-exp": "Expériences Professionnelles",
+                "exp1-title": "Data Engineer & Software Expert",
+                "exp1-subtitle": "Sopra Steria (Client: Thales AVS) | 2022 - Présent",
+                "exp1-list": `<li>Architecture et déploiement de pipelines ETL pour données aéronautiques complexes.</li>
+                             <li>Développement logiciel embarqué (FWS) en conformité avec la norme DO-178B.</li>
+                             <li>Automatisation de tests IVV via Python et analyse via sondes iSystem.</li>
+                             <li>Création de tableaux de bord Power BI pour le pilotage de projets techniques.</li>`,
+                "exp2-title": "Service Bulletin Engineer - Technical Expert",
+                "exp2-subtitle": "Akka Technologies (Client: Airbus) | 2017 - 2020",
+                "exp2-list": `<li>Expert technique "Authorized Controller" pour les Service Bulletins Airbus.</li>
+                             <li>Gestion complète du cycle de vie des SB et garantie de la navigabilité.</li>`,
+                "exp3-subtitle": "Sogeclair Aerospace (Airbus A350XWB) | 2013 - 2017",
+                "exp3-desc": "Gestion des modifications techniques et impacts industriels sur le programme A350XWB.",
+                "section-edu": "Formation & Certifications",
+                "cert-id": "Identification : D82AC809B8E5C00D",
+                "cert-btn": "Vérifier le titre",
+                "edu1-title": "Développeur Python",
+                "edu1-sub": "OpenClassrooms (Niveau 6 EQF)",
+                "edu1-desc": "13 projets pro validés : Django, API REST, Docker, PostgreSQL.",
+                "edu2-title": "Développeur Logiciel C/C++",
+                "edu2-sub": "AJC Formation (Environnements Embarqués)",
+                "edu2-desc": "Programmation objet, Linux, Raspberry Pi.",
+                "edu3-title": "Licence Pro Maintenance Aéro",
+                "edu3-sub": "Université Toulouse Jean Jaurès",
+                "edu4-title": "DUT Génie Industriel & Maintenance",
+                "footer": "© 2026 William Gavigniaux — Hébergé sur mon vieux OnePlus 3 💙"
+            },
+            en: {
+                "nav-home": "Home",
+                "nav-exp": "Experience",
+                "nav-edu": "Education",
+                "hero-subtitle": "Data Engineer & Certified Power BI Analyst",
+                "hero-desc": "Aeronautical Expert (Airbus Programs) combining 8+ years of industry experience with expertise in Data Engineering and Critical Embedded Systems (DO-178).",
+                "hero-btn-exp": "View my journey",
+                "skill-1": "Microsoft Certified",
+                "skill-2": "ETL & Pipelines",
+                "skill-3-title": "Avionics",
+                "section-exp": "Professional Experience",
+                "exp1-title": "Data Engineer & Software Expert",
+                "exp1-subtitle": "Sopra Steria (Client: Thales AVS) | 2022 - Present",
+                "exp1-list": `<li>Designed and implemented ETL pipelines for complex aeronautical datasets.</li>
+                             <li>Developed embedded software (FWS) in compliance with DO-178B standards.</li>
+                             <li>Automated IVV testing using Python and deep-dive analysis via iSystem probes.</li>
+                             <li>Created Power BI dashboards for strategic technical project tracking.</li>`,
+                "exp2-title": "Service Bulletin Engineer - Technical Expert",
+                "exp2-subtitle": "Akka Technologies (Client: Airbus) | 2017 - 2020",
+                "exp2-list": `<li>Technical Expert & "Authorized Controller" for Airbus Service Bulletins.</li>
+                             <li>End-to-end management of SB lifecycle ensuring airworthiness compliance.</li>`,
+                "exp3-subtitle": "Sogeclair Aerospace (Airbus A350XWB) | 2013 - 2017",
+                "exp3-desc": "Managed technical changes and industrial impacts for the A350XWB program.",
+                "section-edu": "Education & Certifications",
+                "cert-id": "Credential ID: D82AC809B8E5C00D",
+                "cert-btn": "Verify Credential",
+                "edu1-title": "Python Developer",
+                "edu1-sub": "OpenClassrooms (EQF Level 6 / Bachelor equivalent)",
+                "edu1-desc": "13 professional projects: Django, REST APIs, Docker, PostgreSQL.",
+                "edu2-title": "C/C++ Software Developer",
+                "edu2-sub": "AJC Formation (Embedded Systems)",
+                "edu2-desc": "Object-oriented programming, Linux, Raspberry Pi integration.",
+                "edu3-title": "Bachelor in Aircraft Maintenance",
+                "edu3-sub": "University of Toulouse Jean Jaurès",
+                "edu4-title": "Associate Degree in Industrial Engineering",
+                "footer": "© 2026 William Gavigniaux — Hosted on my old OnePlus 3 💙"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-blue-500', 'text-blue-400');
+            });
+            const activeBtn = document.getElementById(`lang-${lang}`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'border-blue-500', 'text-blue-400');
+            }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        // Script pour le défilement doux (Smooth Scroll) manuel si nécessaire
+        // Utile pour ajuster finement le décalage (offset) de la navbar
+        document.querySelectorAll('.nav-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Offset de la navbar
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        window.onload = () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'en';
+            setLanguage(savedLang);
+        }
+    </script>
+</body>
+</html>
