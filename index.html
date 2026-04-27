@@ -33,12 +33,12 @@
             -webkit-text-fill-color: transparent; 
         }
 
-        .cert-card { 
+        .cert-card, .project-card { 
             border-left: 4px solid #3b82f6; 
-            transition: transform 0.2s; 
+            transition: all 0.3s ease; 
         }
 
-        .cert-card:hover { 
+        .cert-card:hover, .project-card:hover { 
             transform: translateY(-5px); 
         }
 
@@ -58,6 +58,17 @@
             transform: scale(1.02); 
         }
 
+        .live-dot { 
+            height: 8px; width: 8px; 
+            background-color: #22c55e; 
+            border-radius: 50%; 
+            display: inline-block; 
+            margin-right: 6px; 
+            box-shadow: 0 0 8px #22c55e; 
+            animation: pulse 2s infinite; 
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
         /* Ajustement pour que l'ancre ne soit pas cachée par la navbar fixe */
         section {
             scroll-margin-top: 100px;
@@ -73,6 +84,7 @@
             <div class="flex items-center gap-6">
                 <div class="hidden md:flex space-x-6 text-sm font-medium">
                     <a href="#hero" class="nav-link hover:text-blue-400 transition" data-i18n="nav-home">Home</a>
+                    <a href="#project-live" class="nav-link hover:text-blue-400 transition font-bold text-blue-400">Live Data</a>
                     <a href="#experience" class="nav-link hover:text-blue-400 transition" data-i18n="nav-exp">Experience</a>
                     <a href="#education" class="nav-link hover:text-blue-400 transition" data-i18n="nav-edu">Education</a>
                 </div>
@@ -125,16 +137,76 @@
                 <p class="font-bold" data-i18n="skill-3-title">Avionics</p>
                 <p class="text-xs text-slate-500">DO-178 / FWS</p>
             </div>
-            <div class="p-4 glass rounded-xl flex flex-col items-center justify-center">
-                <i class="fas fa-cogs text-blue-400 text-2xl mb-2"></i>
+            <a href="#experience" class="p-4 glass rounded-xl flex flex-col items-center justify-center clickable-card">
+                <i class="fas fa-sitemap text-blue-400 text-2xl mb-2"></i>
                 <p class="font-bold">Config Mgmt</p>
                 <p class="text-xs text-slate-500">Airbus A350XWB</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Featured Live Project Section -->
+    <section id="project-live" class="py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+                <div>
+                    <h3 class="text-blue-400 font-bold uppercase tracking-widest text-sm mb-2 italic">// Data Engineering Case Study</h3>
+                    <h2 class="text-4xl font-bold" data-i18n="proj-title">OpenSky Traffic Engine</h2>
+                </div>
+                <div class="flex items-center text-xs bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
+                    <span class="live-dot" id="status-dot"></span>
+                    <span id="status-text" data-i18n="proj-live-status">Live from OnePlus 3 (Seysses)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+                <!-- Textual Details -->
+                <div class="lg:col-span-7 project-card p-8 rounded-3xl bg-slate-800/30">
+                    <div class="flex gap-2 mb-6 flex-wrap">
+                        <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-1 rounded font-bold">Python ETL</span>
+                        <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded font-bold">FastAPI</span>
+                        <span class="text-[10px] bg-indigo-500/20 text-indigo-400 px-2 py-1 rounded font-bold">SQLite</span>
+                        <span class="text-[10px] bg-slate-500/20 text-slate-400 px-2 py-1 rounded font-bold">Termux/Linux</span>
+                    </div>
+                    <p class="text-slate-300 mb-6 text-sm md:text-base leading-relaxed" data-i18n="proj-desc">
+                        Architecture of a real-time data pipeline deployed on a mobile edge device. The system extracts flight data over Toulouse, processes it through a cleaning layer, and stores it in a persistent SQLite database, all exposed via a high-performance REST API.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-400">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-500 mt-1"></i>
+                            <span data-i18n="proj-feat-1">Automated ETL every 5 mins</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check text-blue-500 mt-1"></i>
+                            <span data-i18n="proj-feat-2">Battery-optimized server (ACC)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI Displays -->
+                <div class="lg:col-span-5 grid grid-cols-1 gap-4">
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+                        <p class="text-slate-500 text-[10px] uppercase font-bold tracking-wider" data-i18n="stat-captures">Total Captures</p>
+                        <div id="stat-total" class="text-4xl font-mono font-bold text-blue-400 mt-2">---</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50 flex flex-col justify-between">
+                        <p class="text-slate-500 text-[10px] uppercase font-bold tracking-wider" data-i18n="stat-unique">Unique Aircraft</p>
+                        <div id="stat-planes" class="text-4xl font-mono font-bold text-indigo-400 mt-2">---</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                        <p class="text-blue-100 text-[10px] uppercase font-bold tracking-wider" data-i18n="stat-last">Last Callsign Spotted</p>
+                        <div id="stat-last" class="text-3xl font-black text-white mt-2">---</div>
+                        <p class="text-[9px] text-blue-200 mt-4 opacity-80 uppercase">
+                            <i class="fas fa-clock mr-1"></i> <span data-i18n="stat-update">Sync:</span> <span id="last-update">---</span>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-6 py-20 space-y-24">
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-24">
 
         <!-- Experience -->
         <section id="experience">
@@ -180,6 +252,7 @@
                 <span class="w-8 h-1 bg-indigo-500 rounded"></span> <span data-i18n="section-edu">Education & Certifications</span>
             </h3>
 
+            <!-- Microsoft Cert -->
             <div id="cert-highlight" class="mb-10 glass p-6 rounded-2xl cert-card bg-gradient-to-r from-blue-900/20 to-transparent scroll-mt-24">
                 <div class="flex flex-col md:flex-row items-center gap-6">
                     <div class="bg-white p-3 rounded-lg shadow-lg shadow-blue-500/20">
@@ -195,7 +268,8 @@
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
+            <!-- Education Grid -->
+            <div class="grid md:grid-cols-2 gap-6 pb-12">
                 <div class="glass p-6 rounded-2xl">
                     <span class="text-indigo-400 font-bold">2021 - 2022</span>
                     <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu1-title">Python Developer</h4>
@@ -210,13 +284,13 @@
                 </div>
                 <div class="glass p-6 rounded-2xl">
                     <span class="text-indigo-400 font-bold">2012 - 2013</span>
-                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu3-title">Bachelor in Aircraft Maintenance</h4>
-                    <p class="text-sm text-slate-400" data-i18n="edu3-sub">University of Toulouse Jean Jaurès</p>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu3-title">Licence Pro Maintenance Aéro</h4>
+                    <p class="text-sm text-slate-400" data-i18n="edu3-sub">Université Toulouse Jean Jaurès</p>
                 </div>
                 <div class="glass p-6 rounded-2xl">
                     <span class="text-indigo-400 font-bold">2010 - 2012</span>
-                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu4-title">Associate Degree in Industrial Engineering</h4>
-                    <p class="text-sm text-slate-400">University of Perpignan (UPVD)</p>
+                    <h4 class="text-lg font-bold mt-1 text-white" data-i18n="edu4-title">DUT Génie Industriel & Maintenance</h4>
+                    <p class="text-sm text-slate-400" data-i18n="edu4-sub">University of Perpignan (UPVD)</p>
                 </div>
             </div>
         </section>
@@ -232,6 +306,8 @@
     </footer>
 
     <script>
+        const API_URL = "http://192.168.1.241:8000/api/stats";
+
         const translations = {
             fr: {
                 "nav-home": "Accueil",
@@ -244,6 +320,15 @@
                 "skill-2": "ETL & Pipelines",
                 "skill-3-title": "Avionique",
                 "section-exp": "Expériences Professionnelles",
+                "proj-title": "OpenSky Traffic Engine",
+                "proj-live-status": "En direct du OnePlus 3 (Seysses)",
+                "proj-desc": "Architecture d'un pipeline de données temps réel déployé sur un appareil mobile. Le système extrait les données de vol sur Toulouse, les traite et les stocke dans une base SQLite, le tout exposé via une API FastAPI performante.",
+                "proj-feat-1": "ETL automatisé toutes les 5 min",
+                "proj-feat-2": "Serveur optimisé batterie (ACC)",
+                "stat-captures": "Captures Totales",
+                "stat-unique": "Avions Uniques",
+                "stat-last": "Dernier Appareil Détecté",
+                "stat-update": "Sync :",
                 "exp1-title": "Data Engineer & Software Expert",
                 "exp1-subtitle": "Sopra Steria (Client: Thales AVS) | 2022 - Présent",
                 "exp1-list": `<li>Architecture et déploiement de pipelines ETL pour données complexes.</li>
@@ -265,9 +350,10 @@
                 "edu2-title": "Développeur Logiciel C/C++",
                 "edu2-sub": "AJC Formation (Environnements Embarqués)",
                 "edu2-desc": "Programmation objet, Linux, Raspberry Pi.",
-                "edu3-title": "Licence Pro Maintenance Aéro",
+                "edu3-title": "Licence Maintenance Aéronautique",
                 "edu3-sub": "Université Toulouse Jean Jaurès",
                 "edu4-title": "DUT Génie Industriel & Maintenance",
+                "edu4-sub": "Université de Perpignan (UPVD)",
                 "footer": "© 2026 William Gavigniaux — Hébergé sur mon vieux OnePlus 3 💙"
             },
             en: {
@@ -281,6 +367,15 @@
                 "skill-2": "ETL & Pipelines",
                 "skill-3-title": "Avionics",
                 "section-exp": "Professional Experience",
+                "proj-title": "OpenSky Traffic Engine",
+                "proj-live-status": "Live from OnePlus 3 (Seysses)",
+                "proj-desc": "Architecture of a real-time data pipeline deployed on a mobile edge device. The system extracts flight data over Toulouse, processes it through a cleaning layer, and stores it in a persistent SQLite database, all exposed via a high-performance REST API.",
+                "proj-feat-1": "Automated ETL every 5 mins",
+                "proj-feat-2": "Battery-optimized server (ACC)",
+                "stat-captures": "Total Captures",
+                "stat-unique": "Unique Aircraft",
+                "stat-last": "Last Callsign Spotted",
+                "stat-update": "Sync:",
                 "exp1-title": "Data Engineer & Software Expert",
                 "exp1-subtitle": "Sopra Steria (Client: Thales AVS) | 2022 - Present",
                 "exp1-list": `<li>Designed and implemented ETL pipelines for complex datasets.</li>
@@ -302,52 +397,53 @@
                 "edu2-title": "C/C++ Software Developer",
                 "edu2-sub": "AJC Formation (Embedded Systems)",
                 "edu2-desc": "Object-oriented programming, Linux, Raspberry Pi integration.",
-                "edu3-title": "Bachelor in Aircraft Maintenance",
-                "edu3-sub": "University of Toulouse Jean Jaurès",
-                "edu4-title": "Associate Degree in Industrial Engineering",
+                "edu3-title": "Aircraft Engineering Bachelor",
+                "edu3-sub": "University Toulouse Jean Jaurès",
+                "edu4-title": "Industrial Maintenance Degree (DUT)",
+                "edu4-sub": "University of Perpignan (UPVD)",
                 "footer": "© 2026 William Gavigniaux — Hosted on my old OnePlus 3 💙"
             }
         };
+
+        async function fetchLiveStats() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error();
+                const data = await response.json();
+                
+                document.getElementById('stat-total').innerText = data.total_records.toLocaleString();
+                document.getElementById('stat-planes').innerText = data.unique_planes.toLocaleString();
+                document.getElementById('stat-last').innerText = data.last_callsign || "---";
+                document.getElementById('last-update').innerText = data.server_time;
+                
+                document.getElementById('status-dot').style.backgroundColor = "#22c55e";
+                document.getElementById('status-dot').style.boxShadow = "0 0 8px #22c55e";
+            } catch (e) {
+                document.getElementById('status-dot').style.backgroundColor = "#ef4444";
+                document.getElementById('status-dot').style.boxShadow = "0 0 8px #ef4444";
+            }
+        }
 
         function setLanguage(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active', 'border-blue-500', 'text-blue-400');
             });
             const activeBtn = document.getElementById(`lang-${lang}`);
-            if (activeBtn) {
-                activeBtn.classList.add('active', 'border-blue-500', 'text-blue-400');
-            }
+            if (activeBtn) activeBtn.classList.add('active', 'border-blue-500', 'text-blue-400');
+            
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
             });
             document.documentElement.lang = lang;
             localStorage.setItem('preferred-lang', lang);
         }
 
-        // Script pour le défilement doux (Smooth Scroll) manuel si nécessaire
-        // Utile pour ajuster finement le décalage (offset) de la navbar
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId.startsWith('#')) {
-                    e.preventDefault();
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Offset de la navbar
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-
         window.onload = () => {
             const savedLang = localStorage.getItem('preferred-lang') || 'en';
             setLanguage(savedLang);
+            fetchLiveStats();
+            setInterval(fetchLiveStats, 60000); // Mise à jour auto toutes les minutes
         }
     </script>
 </body>
